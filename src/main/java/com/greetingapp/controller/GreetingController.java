@@ -1,11 +1,24 @@
 package com.greetingapp.controller;
 
 import com.greetingapp.model.Greeting;
+import com.greetingapp.service.GreetingService;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/greeting")
 public class GreetingController {
+    private GreetingService greetingService;
+
+    public GreetingController(GreetingService greetingService) {
+        this.greetingService = greetingService;
+    }
+
+    //Extending controller to say hello world
+    @GetMapping("/hello")
+    public Greeting sayHello(){
+        String message = greetingService.getGreetingService();
+        return new Greeting(message);
+    }
     @GetMapping
     public Greeting getGreeting(){
         return new Greeting("Hello : this is get mapping");
