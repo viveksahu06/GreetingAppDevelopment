@@ -15,8 +15,8 @@ public class GreetingController {
 
     //Extending controller to say hello world
     @GetMapping("/hello")
-    public Greeting sayHello(){
-        String message = greetingService.getGreetingService();
+    public Greeting sayHello(@RequestParam(required = false) String firstName, @RequestParam(required = false) String lastName){
+        String message = greetingService.getGreetingService(firstName,lastName);
         return new Greeting(message);
     }
     @GetMapping
