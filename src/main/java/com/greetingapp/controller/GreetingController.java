@@ -1,8 +1,11 @@
 package com.greetingapp.controller;
 
+import com.greetingapp.entity.GreetingEntity;
 import com.greetingapp.model.Greeting;
 import com.greetingapp.service.GreetingService;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/greeting")
@@ -36,6 +39,18 @@ public class GreetingController {
     @PostMapping
     public Greeting postGreeting(){
         return new Greeting("Hello : this is post mapping");
+    }
+
+    //Method to save the greeting in h2
+    @PutMapping("/save")
+    public GreetingEntity saveGreetings(@RequestParam(required = false) String firstName, @RequestParam(required = false) String lastName){
+        return greetingService.saveGreetingRepository(firstName,lastName);
+    }
+
+    //Method to get all the greetings
+    @GetMapping("/all")
+    public List<GreetingEntity> getAllGreetings(){
+        return greetingService.getAllGreetings();
     }
 
 }
