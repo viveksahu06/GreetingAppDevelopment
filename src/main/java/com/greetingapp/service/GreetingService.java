@@ -5,6 +5,7 @@ import com.greetingapp.repository.GreetingRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class GreetingService {
@@ -26,6 +27,10 @@ public class GreetingService {
     //method to get all the greetings
     public List<GreetingEntity> getAllGreetings() {
         return greetingRepository.findAll();
+    }
+
+    public Optional<GreetingEntity> getGreetingById(Long id){
+        return greetingRepository.findById(id);
     }
 
     public String getGreetingService(String firstName, String lastName){
