@@ -49,6 +49,7 @@ public class GreetingController {
     }
 
     //Method to get all the greetings
+    //Getting all the greetings
     @GetMapping("/all")
     public List<GreetingEntity> getAllGreetings(){
         return greetingService.getAllGreetings();
