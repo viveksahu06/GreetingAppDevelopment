@@ -68,4 +68,10 @@ public class GreetingController {
         return ResponseEntity.ok(updatedEntity);
     }
 
+    @PutMapping("/delete/{id}")
+    public ResponseEntity<GreetingEntity> deleteGreetingMessage(@PathVariable Long id) {
+        GreetingEntity updatedEntity = greetingService.deleteAGreetingMessageById(id);
+        return ResponseEntity.ok(updatedEntity);
+    }
+
 }

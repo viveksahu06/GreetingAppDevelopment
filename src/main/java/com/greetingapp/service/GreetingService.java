@@ -45,6 +45,17 @@ public class GreetingService {
             throw new RuntimeException("Greeting with ID " + id + " not found");
         }
     }
+    public GreetingEntity deleteAGreetingMessageById(Long id){
+        Optional<GreetingEntity> entityOptional = getGreetingById(id);
+        if(entityOptional.isPresent()){
+            GreetingEntity entity = entityOptional.get();
+            entity.setMessage(null);
+            return greetingRepository.save(entity);
+        }
+        else{
+            throw new RuntimeException("Greeting with ID " + id + " not found");
+        }
+    }
 
     public String getGreetingService(String firstName, String lastName){
         if(firstName!= null && lastName != null){
