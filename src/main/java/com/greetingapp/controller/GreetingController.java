@@ -3,6 +3,7 @@ package com.greetingapp.controller;
 import com.greetingapp.entity.GreetingEntity;
 import com.greetingapp.model.Greeting;
 import com.greetingapp.service.GreetingService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -58,6 +59,13 @@ public class GreetingController {
     @GetMapping("/find/{id}")
     public Optional<GreetingEntity>getGreetingsWithId(@PathVariable Long id){
         return greetingService.getGreetingById(id);
+    }
+
+    //Method to update greeting message
+    @PutMapping("/update/{id}")
+    public ResponseEntity<GreetingEntity> editGreeting(@PathVariable Long id, @RequestBody GreetingEntity updatedGreeting) {
+        GreetingEntity updatedEntity = greetingService.editAGreetingMessage(id, updatedGreeting.getMessage());
+        return ResponseEntity.ok(updatedEntity);
     }
 
 }

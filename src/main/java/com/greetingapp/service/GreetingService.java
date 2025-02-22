@@ -33,6 +33,19 @@ public class GreetingService {
         return greetingRepository.findById(id);
     }
 
+    //To resetMessage
+    public GreetingEntity editAGreetingMessage(Long id,String message){
+        Optional<GreetingEntity> entityOptional = getGreetingById(id);
+        if(entityOptional.isPresent()){
+            GreetingEntity entity = entityOptional.get();
+            entity.setMessage(message);
+            return greetingRepository.save(entity);
+        }
+        else{
+            throw new RuntimeException("Greeting with ID " + id + " not found");
+        }
+    }
+
     public String getGreetingService(String firstName, String lastName){
         if(firstName!= null && lastName != null){
             return "Hello " + firstName + " " + lastName;
